@@ -1,73 +1,50 @@
-# Deployment of Storm cluster 
+Role Name
+=========
 
-## Prerequisites:
-1. Cluster with ip addresses
-2. Ansible software
+Automating the deployment of a Storm Cluster
 
-## Steps to create a storm cluster:
-1. Go to hosts file in the ansible working directory and add the IP address under the group “cluster”. 
+Requirements
+------------
+For the successful installation of Storm cluster we need an inventory file which has node information, after creating a cluster, in the following format:
 
-Create the hosts file if necessary.
->> 1.a. Add a variable to each IP address with the host name under ‘host’
+[chameleon]
+node1 ansible_host=129.114.111.46 host=vasmethk-056 ansible_user=cc
+node2 ansible_host=129.114.32.192 host=vasmethk-057 ansible_user=cc
+node3 ansible_host=129.114.33.10 host=vasmethk-058 ansible_user=cc
+node4 ansible_host=129.114.33.151 host=vasmethk-059 ansible_user=cc
+node5 ansible_host=129.114.33.138 host=vasmethk-060 ansible_user=cc
 
-```
-E.g. node1 ansible_host=“#ip” ansible_user=“cc” host=“abalaga-081”
-```
-(Note, we did not know about the cm cluster inventory command earlier and hence could not incorporate it into the code)
->> 1.b. Create two new groups, nimbus and supervisors.
 
->> 1.c. Nimbus group contains the ip address of the storm master node using the same format as above.
+Role Variables
+--------------
+A Role Variables of cloud="cloud" is required to specify which cloud we intend to use.
 
->> 1.d. supervisors group contains a list of ip addresses of the storm worker nodes using the same format as above.
+Dependencies
+------------
 
-__Running Ansible Playbook__
+No dependencies
 
-*  Run the ansible playbook on the terminal using the following command, by using the command we have fixed the roles issue which we had earlier
-```
-ansible-role cloudmesh.storm
-```
-Alternatively  ansible-playbook may be used as follows:
-```
-ansible-playbook ./tasks/main.yml
-```
-Also, the above can be run by the following command, replace chameleon with different clouds:
-```
+Example Playbook
+----------------
+
 ansible-playbook main.yml --extra-vars "cloud=chameleon"
-```
 
-Command to install the software on all the nodes and configures the nodes
+OR
 
-* Run the start zookeeper.yml file
-```
-ansible-playbook startzookeeper.yml
-```
-Command to start the zookeeper server cluster
+ansible-playbook:
+---
+- hosts: cluster
+- become: True
+- roles:
+    - cloudmesh.storm
 
-* Create another host file with only ip addresses (nimbus should be first) and run the startStorm.sh file using the following command
-```
-bash -s startStorm.sh
-```
-This command ssh’s to all the nodes and starts the storm processes (nimbus on master and supervisor on workers)
+License
+-------
 
-* Any topology may be submitted to the cluster using the submit.sh file.
->> a. Create a jar file containing the topology. Ensure that StormSubmitter() is used in the Topology class (to deploy on a production cluster).
+BSD
 
->> b. Move the jar to the ansible folder or download the jar file on GitHub.
+Author Information
+------------------
 
->> c. Run the submit.sh file with the following command
-```
-bash -s submit.sh <nimbus ip> <jar file> <name of topology> <name of the job to submit>
-```
-```
-E.g. bash -s submit.sh “#ip” storm-starter.jar storm.starter.ExclamationTopology exclamation-topology
-```
-This job copies the jar file to the nimbus and runs the storm command to submit to the cluster.
-
-The storm cluster is set up and a job is being run on the cluster.
-
-### Storm UI
-To check cluster statistics, storm ui may be enabled.
-> 1. Type the IP address of the nimbus into a browser along with the port 8080.
-> 2. This opens the storm ui and the cluster details are mentioned.
-> 3. Currently running jobs are displayed.
-
+Vasanth Methkupalli(mvasanthiiit@gmail.com)
+Ajit Balaga(skynite9@gmail.com)
