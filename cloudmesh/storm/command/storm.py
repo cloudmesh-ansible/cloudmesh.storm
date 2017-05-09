@@ -11,6 +11,7 @@ class StormCommand(PluginCommand):
         ::
 
           Usage:
+                storm deploy CLOUD
                 storm -f FILE
                 storm FILE
                 storm list
