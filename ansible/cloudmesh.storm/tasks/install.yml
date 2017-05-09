@@ -2,7 +2,7 @@
 - hosts: cluster
   become: True
   vars_files:
-   - "{{cloud}}.yml"
+   - "../vars/{{cloud}}.yml"
   tasks:
    - name: Update vms
      apt:
