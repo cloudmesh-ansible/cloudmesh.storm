@@ -47,7 +47,9 @@ This command ssh’s to all the nodes and starts the storm processes (nimbus on 
 
 * Any topology may be submitted to the cluster using the submit.sh file.
 >> a. Create a jar file containing the topology. Ensure that StormSubmitter() is used in the Topology class (to deploy on a production cluster).
+
 >> b. Move the jar to the ansible folder or download the jar file on GitHub.
+
 >> c. Run the submit.sh file with the following command
 ```
 bash -s submit.sh <nimbus ip> <jar file> <name of topology> <name of the job to submit>
