@@ -8,17 +8,17 @@
 1. Go to hosts file in the ansible working directory and add the IP address under the group “cluster”. 
 
 Create the hosts file if necessary.
-	>> 1.a. Add a variable to each IP address with the host name under ‘host’
+>> 1.a. Add a variable to each IP address with the host name under ‘host’
 
 ```
 E.g. node1 ansible_host=“#ip” ansible_user=“cc” host=“abalaga-081”
 ```
 (Note, we did not know about the cm cluster inventory command earlier and hence could not incorporate it into the code)
-	>> 1.b. Create two new groups, nimbus and supervisors.
+>> 1.b. Create two new groups, nimbus and supervisors.
 
 >> 1.c. Nimbus group contains the ip address of the storm master node using the same format as above.
 
-   >> 1.d. supervisors group contains a list of ip addresses of the storm worker nodes using the same format as above.
+>> 1.d. supervisors group contains a list of ip addresses of the storm worker nodes using the same format as above.
 
 __Running Ansible Playbook__
 
@@ -46,9 +46,9 @@ bash -s startStorm.sh
 This command ssh’s to all the nodes and starts the storm processes (nimbus on master and supervisor on workers)
 
 * Any topology may be submitted to the cluster using the submit.sh file.
-	>> a. Create a jar file containing the topology. Ensure that StormSubmitter() is used in the Topology class (to deploy on a production cluster).
-	b. Move the jar to the ansible folder or download the jar file on GitHub.
-	c. Run the submit.sh file with the following command
+>> a. Create a jar file containing the topology. Ensure that StormSubmitter() is used in the Topology class (to deploy on a production cluster).
+>> b. Move the jar to the ansible folder or download the jar file on GitHub.
+>> c. Run the submit.sh file with the following command
 ```
 bash -s submit.sh <nimbus ip> <jar file> <name of topology> <name of the job to submit>
 ```
