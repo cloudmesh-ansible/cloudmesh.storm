@@ -2,9 +2,10 @@
 - hosts: cluster
   become: True
   tasks:
-   - name: Update vm
+   - name: Update vms
      apt:
        update_cache: yes
+   
    - name: Install required packages
      apt:
        name: "{{ item }}"
@@ -14,6 +15,7 @@
         - openjdk-7-jre
         - openjdk-7-jdk
         - maven
+   
    - name: Create zookeeper and storm directories
      file:
        path: /home/{{user}}/{{item}}
@@ -23,28 +25,34 @@
         - zookeeper-3.4.10/data
         - zookeeper-3.4.10/logs
         - apache-storm-1.1.0
+   
    - name: Download and unarchive zookeeper files
      unarchive:
        src: http://www-us.apache.org/dist/zookeeper/stable/zookeeper-3.4.10.tar.gz
        dest: /home/{{user}}/
        remote_src: True
+   
    - name: Download and unarchive storm files
      unarchive:
        src: http://www-us.apache.org/dist/storm/apache-storm-1.1.0/apache-storm-1.1.0.tar.gz
        dest: /home/{{user}}/
        remote_src: True
+   
    - name: Update hosts file
      template:
        src: hosts.j2
        dest: /etc/hosts
+   
    - name: Create myid file for zookeeper config
      template:
        src: myid.j2
        dest: /home/{{user}}/zookeeper-3.4.10/data/myid
+   
    - name: Create zookeeper config file
      template:
        src: zoo.cfg.j2
        dest: /home/{{user}}/zookeeper-3.4.10/conf/zoo.cfg
+   
    - name: Create storm yaml config file
      template:
        src: storm.yaml.j2
