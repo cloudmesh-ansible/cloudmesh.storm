@@ -1,0 +1,6 @@
+---
+- include: chameleon.yml
+  when: cloud == 'chameleon'
+  
+- include: kilo.yml
+  when: cloud == 'kilo'
