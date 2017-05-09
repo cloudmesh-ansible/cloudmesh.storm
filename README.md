@@ -22,7 +22,7 @@ E.g. node1 ansible_host=“#ip” ansible_user=“cc” host=“abalaga-081”
 
 __Running Ansible Playbook__
 
-*  Run the ansible playbook on the terminal using the following command
+*  Run the ansible playbook on the terminal using the following command, by using the command we have fixed the roles issue which we had earlier
 ```
 ansible-role cloudmesh.storm
 ```
@@ -30,7 +30,10 @@ Alternatively  ansible-playbook may be used as follows:
 ```
 ansible-playbook ./tasks/main.yml
 ```
-
+Also, the above can be run by the following command, replace chameleon with different clouds:
+```
+ansible-playbook main.yml --extra-vars "cloud=chameleon"
+```
 Command to install the software on all the nodes and configures the nodes
 
 * Run the start zookeeper.yml file
