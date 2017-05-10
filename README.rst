@@ -49,7 +49,7 @@ Also, the above can be run by the following command, replace chameleon with diff
 
 Command to install the software on all the nodes and configures the nodes
 
-* Run the start zookeeper.yml file::
+* Run the start `zookeeper.yml` file::
 
     ansible-playbook startzookeeper.yml
 
