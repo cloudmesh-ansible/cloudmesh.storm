@@ -1,3 +1,5 @@
 ---
 user: ubuntu
 ansible_user: ubuntu
+image: Ubuntu-Server-14.04-LTS
+flavor: m1.small

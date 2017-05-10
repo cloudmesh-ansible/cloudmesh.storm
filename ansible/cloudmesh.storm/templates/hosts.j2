@@ -9,5 +9,5 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 
 {% for server in groups['cluster'] %}
-{{ hostvars[server]['ansible_host'] }} {{ hostvars[server].ansible_hostname }} {{ server }}
+{{ hostvars[server]['ansible_ssh_host'] }} {{ hostvars[server].ansible_hostname }} {{ server }}
 {% endfor %}

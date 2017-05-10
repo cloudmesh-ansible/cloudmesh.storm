@@ -1,13 +1,13 @@
 storm.zookeeper.servers:
 {% for server in groups['cluster'] %}
-  - {{ hostvars[server]['ansible_host'] }}
+  - {{ hostvars[server]['ansible_ssh_host'] }}
 {% endfor %}
 
 storm.local.dir: "/home/{{user}}/apache-storm-1.1.0/data/"
 
 nimbus.seeds:
 {% for server in groups['nimbus'] %}
-  - {{ hostvars[server]['ansible_host'] }}
+  - {{ hostvars[server]['ansible_ssh_host'] }}
 {% endfor %}
 {% for server in groups['supervisors'] %}
 {% if server == inventory_hostname %}
