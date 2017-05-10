@@ -7,14 +7,17 @@ Prerequisites
 1. Cluster with ip addresses
 2. Ansible software
 
-## Steps to create a storm cluster:
-1. Go to hosts file in the ansible working directory and add the IP address under the group “cluster”. 
+Steps to create a storm cluster:
+--------------------------------
+
+Go to hosts file in the ansible working directory and add the IP
+address under the group `cluster`.
 
 Create the hosts file if necessary:
 
 * 1.a. Add a variable to each IP address with the host name under `host`::
 
-  node1 ansible_host=“#ip” ansible_user=“cc” host=“abalaga-081”
+    node1 ansible_host=“#ip” ansible_user=“cc” host=“abalaga-081”
 
   .. note:: We did not know about the cm cluster inventory command
             earlier and hence could not incorporate it into the code.
