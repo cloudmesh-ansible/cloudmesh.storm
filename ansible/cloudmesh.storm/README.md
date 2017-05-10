@@ -13,6 +13,11 @@ For the successful installation of Storm cluster we need an inventory file which
     node3 ansible_host=129.114.33.10 host=vasmethk-058 ansible_user=cc
     node4 ansible_host=129.114.33.151 host=vasmethk-059 ansible_user=cc
     node5 ansible_host=129.114.33.138 host=vasmethk-060 ansible_user=cc
+    
+    
+However, the above has been successfully automated by using hosts.sh script file present in the bin folder, which does the job for us.
+
+
 
 
 Role Variables
