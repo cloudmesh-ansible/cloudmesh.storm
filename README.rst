@@ -12,20 +12,19 @@ Prerequisites
 
 Create the hosts file if necessary:
 
-1.a. Add a variable to each IP address with the host name under
-‘host’::
+* 1.a. Add a variable to each IP address with the host name under `host`::
 
   node1 ansible_host=“#ip” ansible_user=“cc” host=“abalaga-081”
 
-.. note:: We did not know about the cm cluster inventory command
-	  earlier and hence could not incorporate it into the code.
+  .. note:: We did not know about the cm cluster inventory command
+            earlier and hence could not incorporate it into the code.
 	  
-1.b. Create two new groups, nimbus and supervisors.
+* 1.b. Create two new groups, nimbus and supervisors.
 
-1.c. Nimbus group contains the ip address of the storm master node
+* 1.c. Nimbus group contains the ip address of the storm master node
   using the same format as above.
 
-1.d. supervisors group contains a list of ip addresses of the storm
+* 1.d. supervisors group contains a list of ip addresses of the storm
   worker nodes using the same format as above.
 
 Running Ansible Playbook
