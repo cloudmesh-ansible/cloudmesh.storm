@@ -18,19 +18,18 @@ class StormCommand(PluginCommand):
 		::
 
 			Usage:
-				storm info
-				storm name <NAME>
-				storm size <SIZE>
-				storm image <IMAGE>
-				storm flavor <FLAVOR>
-				storm cloud <CLOUD>
+				storm name NAME
+				storm size SIZE
+				storm image IMAGE
+				storm flavor FLAVOR
+				storm cloud CLOUD
 				storm cluster info
 				storm cluster create
 				storm install
 				storm start zookeper
 				storm start nimbus
 				storm start zookeeper
-				storm submit <JAR>
+				storm submit JAR
 
 			Arguments:
 			NAME	name of the cluster
@@ -40,37 +39,38 @@ class StormCommand(PluginCommand):
 			CLOUD	cloud to create a cluster on
 			JAR		jar file to submit to cluster
 
+			Description:
+			Creates a cluster and deploys storm on the cluster
+			
+				1. Requires the cloud to be deployed on as a variable
+				2. Set cluster variables using
+					storm name <name>
+					storm size <size>
+					storm image <image>
+					storm flavor <flavor>
+					storm cloud <cloud>
+				3. Create a cluster
+					storm cluster create
+				4. Install requirements
+					storm install
+				5. Start zookeeper server cluster
+					storm start zookeeper
+				6. Check if zookeeper is started
+					storm status zookeeper
+				7. Start storm daemons
+					storm start nimbus
+					storm start supervisors
+				Topologies may now be submitted to the cluster. 
+				Topologies need to be in a jar file.
+				To submit a topology to storm cluster, use
+				storm submit <path to jar>
 		"""
 		
 		#print(arguments)
 		
 		default = Default()
 
-		if arguments.info:
-			print("Creates a cluster and deploys storm on the cluster")
-			print("\t1. Requires the cloud to be deployed on as a variable")
-			print("\t2. Set cluster variables using")
-			print("\t\tstorm name <name>")
-			print("\t\tstorm size <size>")
-			print("\t\tstorm image <image>")
-			print("\t\tstorm flavor <flavor>")
-			print("\t\tstorm cloud <cloud>")
-			print("\t3. Create a cluster")
-			print("\t\tstorm cluster create")
-			print("\t4. Install requirements")
-			print("\t\tstorm install")
-			print("\t5. Start zookeeper server cluster")
-			print("\t\tstorm start zookeeper")
-			print("\t6. Check if zookeeper is started")
-			print("\t\tstorm status zookeeper")
-			print("\t7. Start storm daemons")
-			print("\t\tstorm start nimbus")
-			print("\t\tstorm start supervisors")
-			print("\tTopologies may now be submitted to the cluster. Topologies need to be in a jar file")
-			print("\tTo submit a topology to storm cluster, use")
-			print("\t\tstorm submit <path to jar>")
-
-		elif arguments.name and arguments.NAME:
+		if arguments.name and arguments.NAME:
 			print("Set name to {}".format(arguments.NAME))
 			default["storm","name"] = arguments.NAME
 
