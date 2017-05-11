@@ -1,6 +1,36 @@
 ---
 - hosts: cluster
   become: True
+  vars_files:
+   - "../vars/{{cloud}}.yml"
   tasks:
    - name: Start zookeeper cluster
      command: nohup /home/{{user}}/zookeeper-3.4.10/bin/zkServer.sh start
+- hosts: nimbus
+  become: True
+  vars_files:
+   - "../vars/{{cloud}}.yml"
+  tasks:
+   - name: Ensure supervisor is running
+     command: service supervisor restart
+   - name: Load nimbus and ui conf files
+     command: supervisorctl reread
+   - name: Ensure supervisor is updated
+     command: supervisorctl update
+   - name: Start storm nimbus
+     command: supervisorctl start nimbus
+   - name: Start storm ui
+     command: supervisorctl start ui
+- hosts: supervisors
+  become: True
+  vars_files:
+   - "../vars/{{cloud}}.yml"
+  tasks:
+   - name: Ensure supervisor is running
+     command: service supervisor restart
+   - name: Load worker (storm supervisor) conf files
+     command: supervisorctl reread
+   - name: Ensure supervisor is updated
+     command: supervisorctl update
+   - name: Start storm supervisors
+     command: supervisorctl start worker

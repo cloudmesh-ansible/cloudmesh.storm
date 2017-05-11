@@ -18,3 +18,5 @@ tail -n +3 hosts.txt | while IFS='' read -r line || [[ -n "$line" ]]; do
 	echo "node$i host=$line" >> hosts
 	i=$((i+1))
 done
+
+rm hosts.txt

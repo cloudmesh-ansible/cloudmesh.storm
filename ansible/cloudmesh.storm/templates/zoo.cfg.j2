@@ -7,6 +7,9 @@ clientPort = 2181
 initLimit = 10
 syncLimit = 5
 
+autopurge.purgeInterval = 24
+autopurge.snapRetainCount = 3
+
 {% for server in groups['cluster'] %}
 {% if server == inventory_hostname %}
 server.{{ loop.index }}=0.0.0.0:2888:3888

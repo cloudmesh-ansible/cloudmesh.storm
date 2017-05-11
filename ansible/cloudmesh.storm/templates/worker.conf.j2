@@ -1,0 +1,12 @@
+[program:worker]
+command=/home/{{user}}/apache-storm-1.1.0/bin/storm supervisor
+autorestart=true
+startsecs=10
+startretries=10
+log_stdout=true
+log_stderr=true
+stderr_logfile=/home/{{user}}/supervisor/logs/worker.err.log
+stdout_logfile=/home/{{user}}/supervisor/logs/worker.out.log
+user={{user}}
+logfile_maxbytes=20MB
+logfile_backups=10

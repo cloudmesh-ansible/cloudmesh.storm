@@ -17,8 +17,9 @@
         - openjdk-7-jre
         - openjdk-7-jdk
         - maven
+        - supervisor
    
-   - name: Create zookeeper and storm directories
+   - name: Create zookeeper, storm and supervisor directories
      file:
        path: /home/{{user}}/{{item}}
        state: directory
@@ -27,6 +28,7 @@
         - zookeeper-3.4.10/data
         - zookeeper-3.4.10/logs
         - apache-storm-1.1.0
+        - supervisor/logs
    
    - name: Download and unarchive zookeeper files
      unarchive:
@@ -42,20 +44,44 @@
    
    - name: Update hosts file
      template:
-       src: hosts.j2
+       src: ../templates/hosts.j2
        dest: /etc/hosts
    
    - name: Create myid file for zookeeper config
      template:
-       src: myid.j2
+       src: ../templates/myid.j2
        dest: /home/{{user}}/zookeeper-3.4.10/data/myid
    
    - name: Create zookeeper config file
      template:
-       src: zoo.cfg.j2
+       src: ../templates/zoo.cfg.j2
        dest: /home/{{user}}/zookeeper-3.4.10/conf/zoo.cfg
    
    - name: Create storm yaml config file
      template:
-       src: storm.yaml.j2
+       src: ../templates/storm.yaml.j2
        dest: /home/{{user}}/apache-storm-1.1.0/conf/storm.yaml
+
+- hosts: nimbus
+  become: True
+  vars_files:
+   - "../vars/{{cloud}}.yml"
+  tasks:
+   - name: Create nimbus supervisor config file
+     template:
+       src: ../templates/nimbus.conf.j2
+       dest: /etc/supervisor/conf.d/nimbus.conf
+   - name: Create ui supervisor config file
+     template:
+       src: ../templates/ui.conf.j2
+       dest: /etc/supervisor/conf.d/ui.conf
+
+- hosts: supervisors
+  become: True
+  vars_files:
+   - "../vars/{{cloud}}.yml"
+  tasks:
+   - name: Create supervisor supervisor config file
+     template:
+       src: ../templates/worker.conf.j2
+       dest: /etc/supervisor/conf.d/worker.conf
