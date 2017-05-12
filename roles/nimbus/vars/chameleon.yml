@@ -1,0 +1,5 @@
+---
+user: cc
+ansible_user: cc
+image: CC-Ubuntu14.04
+flavor: m1.small

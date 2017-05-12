@@ -1,0 +1,4 @@
+---
+storm_version: 1.1.0
+storm_mirror: http://www-us.apache.org/dist/storm/apache-storm-{{storm_version}}/apache-storm-{{storm_version}}.tar.gz
+wait_time: 30

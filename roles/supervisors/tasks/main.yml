@@ -1,0 +1,27 @@
+---
+- name: Include "{{cloud}}" variables
+  include_vars:
+    file: "{{cloud}}.yml"
+
+- name: Download and unarchive storm files
+  become: yes
+  unarchive:
+    src: "{{storm_mirror}}"
+    dest: /home/{{user}}/
+    remote_src: True
+
+- name: Create storm yaml file
+  become: yes
+  template:
+    src: storm.yaml.j2
+    dest: /home/{{user}}/apache-storm-{{storm_version}}/conf/storm.yaml
+
+- name: Create worker supervisor config file
+  become: yes
+  template:
+    src: worker.conf.j2
+    dest: /etc/supervisor/conf.d/worker.conf
+  notify:
+    - Update supervisor
+    - Restart supervisor
+    - Start worker

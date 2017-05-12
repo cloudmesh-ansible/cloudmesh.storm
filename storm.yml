@@ -1,0 +1,16 @@
+---
+- hosts: cluster
+  become: True
+  roles:
+   - { role: setup, cloud: '{{cloud}}' }
+   - { role: zookeeper, cloud: '{{cloud}}' }
+
+- hosts: nimbus
+  become: True
+  roles:
+   - { role: nimbus, cloud: '{{cloud}}' }
+
+- hosts: supervisors
+  become: True
+  roles:
+   - { role: supervisors, cloud: '{{cloud}}' }

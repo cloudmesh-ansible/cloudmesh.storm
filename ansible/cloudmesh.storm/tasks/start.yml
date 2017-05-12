@@ -5,7 +5,7 @@
    - "../vars/{{cloud}}.yml"
   tasks:
    - name: Start zookeeper cluster
-     command: nohup /home/{{user}}/zookeeper-3.4.10/bin/zkServer.sh start
+     command: nohup /home/{{user}}/zookeeper-{{zookeeper_version}}/bin/zkServer.sh start
 - hosts: nimbus
   become: True
   vars_files:

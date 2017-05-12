@@ -1,0 +1,49 @@
+---
+- name: Include "{{cloud}}" variables
+  include_vars:
+    file: "{{cloud}}.yml"
+
+- name: Download and unarchive storm files
+  become: yes
+  unarchive:
+    src: "{{storm_mirror}}"
+    dest: /home/{{user}}/
+    remote_src: True
+
+- name: Create storm yaml file
+  become: yes
+  template:
+    src: storm.yaml.j2
+    dest: /home/{{user}}/apache-storm-{{storm_version}}/conf/storm.yaml
+
+- name: Create nimbus supervisor config file
+  become: yes
+  template:
+    src: nimbus.conf.j2
+    dest: /etc/supervisor/conf.d/nimbus.conf
+  notify:
+    - Update supervisor
+    - Restart supervisor
+    - Start nimbus
+
+- name: Create ui supervisor config file
+  become: yes
+  template:
+    src: ui.conf.j2
+    dest: /etc/supervisor/conf.d/ui.conf
+  notify:
+    - Update supervisor
+    - Restart supervisor
+    - Start ui
+
+- name: Wait for storm nimbus port
+  wait_for:
+    port: "{{nimbus_port}}"
+    state: started
+    timeout: "{{wait_time}}"
+
+- name: Wait for storm ui port
+  wait_for:
+    port: "{{ui_port}}"
+    state: started
+    timeout: "{{wait_time}}"

@@ -1,0 +1,35 @@
+---
+- name: Update vms
+  apt:
+    update_cache: yes
+
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    install_recommends: no
+  with_items:
+     - openjdk-7-jre
+     - openjdk-7-jdk
+     - maven
+     - supervisor
+
+- name: Include cloud variables
+  include_vars:
+    file: "{{cloud}}.yml"
+
+- name: Create zookeeper, storm and supervisor directories
+  file:
+    path: /home/{{user}}/{{item}}
+    state: directory
+    mode: "a+rwx"
+  with_items:
+     - zookeeper-{{zookeeper_version}}/data
+     - zookeeper-{{zookeeper_version}}/logs
+     - apache-storm-{{storm_version}}
+     - supervisor/logs
+   
+- name: Update hosts file
+  template:
+    src: hosts.j2
+    dest: /etc/hosts

@@ -1,0 +1,31 @@
+---
+- name: Update supervisor
+  become: yes
+  supervisorctl:
+    state: present
+    sleep: 3
+
+- name: Restart supervisor
+  become: yes
+  service:
+    name: supervisor
+    state: restarted
+    sleep: 3
+
+- name: Start zookeeper
+  become: yes
+  supervisorctl:
+    name: zookeeper
+    state: started
+
+- name: Stop zookeeper
+  become: yes
+  supervisorctl:
+    name: zookeeper
+    state: stopped
+
+- name: Restart zookeeper
+  become: yes
+  supervisorctl:
+    name: zookeeper
+    state: restarted

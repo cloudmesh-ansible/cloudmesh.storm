@@ -1,0 +1,9 @@
+---
+zookeeper_version: 3.4.10
+zookeeper_mirror: http://www-us.apache.org/dist/zookeeper/stable/zookeeper-{{zookeeper_version}}.tar.gz
+client_port: 2181
+initLimit: 10
+syncLimit: 5
+wait_time: 30
+commPort: 2888
+electionPort: 3888

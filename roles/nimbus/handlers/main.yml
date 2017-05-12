@@ -1,0 +1,48 @@
+---
+- name: Update supervisor
+  become: yes
+  supervisorctl:
+    state: present
+
+- name: Restart supervisor
+  become: yes
+  service:
+    name: supervisor
+    state: restarted
+    sleep: 3
+
+- name: Start nimbus
+  become: yes
+  supervisorctl:
+    name: nimbus
+    state: started
+
+- name: Stop nimbus
+  become: yes
+  supervisorctl:
+    name: nimbus
+    state: stopped
+
+- name: Restart nimbus
+  become: yes
+  supervisorctl:
+    name: nimbus
+    state: restarted
+
+- name: Start ui
+  become: yes
+  supervisorctl:
+    name: ui
+    state: started
+
+- name: Stop ui
+  become: yes
+  supervisorctl:
+    name: ui
+    state: stopped
+
+- name: Restart ui
+  become: yes
+  supervisorctl:
+    name: ui
+    state: restarted

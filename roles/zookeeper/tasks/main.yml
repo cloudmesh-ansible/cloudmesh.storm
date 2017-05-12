@@ -1,0 +1,39 @@
+---
+- name: Include "{{cloud}}" variables
+  include_vars:
+    file: "{{cloud}}.yml"
+
+- name: Download and unarchive zookeeper files
+  become: yes
+  unarchive:
+    src: "{{zookeeper_mirror}}"
+    dest: /home/{{user}}/
+    remote_src: True
+
+- name: Create myid file for zookeeper config
+  become: yes
+  template:
+    src: myid.j2
+    dest: /home/{{user}}/zookeeper-{{zookeeper_version}}/data/myid
+
+- name: Create zookeeper config file
+  become: yes
+  template:
+    src: zoo.cfg.j2
+    dest: /home/{{user}}/zookeeper-{{zookeeper_version}}/conf/zoo.cfg
+
+- name: Create zookeeper config file
+  become: yes
+  template:
+    src: zookeeper.conf.j2
+    dest: /etc/supervisor/conf.d/zookeeper.conf
+  notify:
+    - Update supervisor
+    - Restart supervisor
+    - Restart zookeeper
+
+- name: Wait for zookeeper port
+  wait_for:
+    port: "{{client_port}}"
+    state: started
+    timeout: "{{wait_time}}"

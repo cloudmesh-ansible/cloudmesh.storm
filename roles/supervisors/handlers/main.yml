@@ -1,0 +1,31 @@
+---
+- name: Update supervisor
+  become: yes
+  supervisorctl:
+    state: present
+    sleep: 3
+
+- name: Restart supervisor
+  become: yes
+  service:
+    name: supervisor
+    state: restarted
+    sleep: 3
+
+- name: Start worker
+  become: yes
+  supervisorctl:
+    name: worker
+    state: started
+
+- name: Stop worker
+  become: yes
+  supervisorctl:
+    name: worker
+    state: stopped
+
+- name: Restart worker
+  become: yes
+  supervisorctl:
+    name: worker
+    state: restarted

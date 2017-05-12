@@ -1,5 +1,6 @@
 [program:nimbus]
 command=/home/{{user}}/apache-storm-{{storm_version}}/bin/storm nimbus
+user={{user}}
 autorestart=true
 startsecs=10
 startretries=10
@@ -7,6 +8,5 @@ log_stdout=true
 log_stderr=true
 stderr_logfile=/home/{{user}}/supervisor/logs/nimbus.err.log
 stdout_logfile=/home/{{user}}/supervisor/logs/nimbus.out.log
-user={{user}}
 logfile_maxbytes=20MB
 logfile_backups=10
