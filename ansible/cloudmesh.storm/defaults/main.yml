@@ -1,5 +1,0 @@
----
-zookeeper_mirror: http://www-us.apache.org/dist/zookeeper/stable/zookeeper-3.4.10.tar.gz
-storm_mirror: http://www-us.apache.org/dist/storm/apache-storm-1.1.0/apache-storm-1.1.0.tar.gz
-zookeeper_version: 3.4.10
-storm_version: 1.1.0

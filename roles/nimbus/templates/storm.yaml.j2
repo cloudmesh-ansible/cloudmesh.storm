@@ -9,10 +9,3 @@ nimbus.seeds:
 {% for server in groups['nimbus'] %}
   - {{ hostvars[server]['ansible_ssh_host'] }}
 {% endfor %}
-{% for server in groups['supervisors'] %}
-{% if server == inventory_hostname %}
-
-supervisor.slots.ports:
-  - 6700
-{% endif %}
-{% endfor %}

@@ -1,5 +1,0 @@
----
-user: ubuntu
-ansible_user: ubuntu
-image: ubuntu-14.04-trusty-server-cloudimg
-flavor: m1.medium

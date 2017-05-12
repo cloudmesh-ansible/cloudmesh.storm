@@ -7,7 +7,7 @@ Requirements
 ------------
 For the successful installation of Storm cluster we need an inventory file which has node information, after creating a cluster, in the following format:
 
-    [chameleon]
+    [cluster]
     node1 ansible_host=129.114.111.46 host=vasmethk-056 ansible_user=cc
     node2 ansible_host=129.114.32.192 host=vasmethk-057 ansible_user=cc
     node3 ansible_host=129.114.33.10 host=vasmethk-058 ansible_user=cc
