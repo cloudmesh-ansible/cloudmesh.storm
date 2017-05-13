@@ -1,0 +1,21 @@
+---
+- name: Submit jar to nimbus
+  hosts: nimbus
+  become: true
+  tasks:
+    - name: Include "{{cloud}}" files
+      include_vars:
+        file: "./roles/nimbus/vars/{{cloud}}.yml"
+
+    - name: Include var files
+      include_vars:
+        file: "./roles/nimbus/defaults/main.yml"
+
+    - name: Copying jar to nimbus
+      copy:
+        src: "{{source}}"
+        dest: /home/{{user}}/
+        mode: "u=rw"
+
+    - name: Submitting to nimbus
+      command: /home/{{user}}/apache-storm-{{storm_version}}/bin/storm jar /home/{{user}}/{{source}} {{class_file}} {{job_name}}

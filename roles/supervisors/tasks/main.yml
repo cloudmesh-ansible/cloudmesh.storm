@@ -22,6 +22,5 @@
     src: worker.conf.j2
     dest: /etc/supervisor/conf.d/worker.conf
   notify:
-    - Update supervisor
     - Restart supervisor
-    - Start worker
+    - Restart worker

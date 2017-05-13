@@ -28,12 +28,5 @@
     src: zookeeper.conf.j2
     dest: /etc/supervisor/conf.d/zookeeper.conf
   notify:
-    - Update supervisor
     - Restart supervisor
     - Restart zookeeper
-
-- name: Wait for zookeeper port
-  wait_for:
-    port: "{{client_port}}"
-    state: started
-    timeout: "{{wait_time}}"

@@ -11,10 +11,9 @@
   with_items:
      - openjdk-7-jre
      - openjdk-7-jdk
-     - maven
      - supervisor
 
-- name: Include cloud variables
+- name: Include "{{cloud}}" variables
   include_vars:
     file: "{{cloud}}.yml"
 

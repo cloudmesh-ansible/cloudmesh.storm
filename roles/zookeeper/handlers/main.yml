@@ -1,10 +1,4 @@
 ---
-- name: Update supervisor
-  become: yes
-  supervisorctl:
-    state: present
-    sleep: 3
-
 - name: Restart supervisor
   become: yes
   service:

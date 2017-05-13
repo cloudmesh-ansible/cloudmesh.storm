@@ -22,9 +22,8 @@
     src: nimbus.conf.j2
     dest: /etc/supervisor/conf.d/nimbus.conf
   notify:
-    - Update supervisor
     - Restart supervisor
-    - Start nimbus
+    - Restart nimbus
 
 - name: Create ui supervisor config file
   become: yes
@@ -32,18 +31,5 @@
     src: ui.conf.j2
     dest: /etc/supervisor/conf.d/ui.conf
   notify:
-    - Update supervisor
     - Restart supervisor
-    - Start ui
-
-- name: Wait for storm nimbus port
-  wait_for:
-    port: "{{nimbus_port}}"
-    state: started
-    timeout: "{{wait_time}}"
-
-- name: Wait for storm ui port
-  wait_for:
-    port: "{{ui_port}}"
-    state: started
-    timeout: "{{wait_time}}"
+    - Restart ui

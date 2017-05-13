@@ -1,0 +1,25 @@
+---
+- name: check zookeeper status
+  hosts: cluster
+  become: true
+  tasks:
+    - name: Wait for zookeeper port
+      wait_for:
+        port: 2181
+        state: started
+        timeout: 30
+
+- name: check nimbus status
+  hosts: nimbus
+  become: true
+  tasks:
+    - name: Wait for nimbus port
+      wait_for:
+        port: 6627
+        state: started
+        timeout: 30
+    - name: Wait for ui port
+      wait_for:
+        port: 8080
+        state: started
+        timeout: 30
