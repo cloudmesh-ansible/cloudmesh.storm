@@ -1,15 +1,19 @@
 [cluster]
-node1 host=abalaga-224 ansible_ssh_host="129.114.33.110" ansible_ssh_user="cc"
-node2 host=abalaga-225 ansible_ssh_host="129.114.33.88" ansible_ssh_user="cc"
-node3 host=abalaga-226 ansible_ssh_host="129.114.33.230" ansible_ssh_user="cc"
-node4 host=abalaga-227 ansible_ssh_host="129.114.32.74" ansible_ssh_user="cc"
-node5 host=abalaga-228 ansible_ssh_host="129.114.32.73" ansible_ssh_user="cc"
+node1 host=abalaga-253 ansible_ssh_host="149.165.158.194" ansible_ssh_user="ubuntu"
+node2 host=abalaga-254 ansible_ssh_host="149.165.158.211" ansible_ssh_user="ubuntu"
+node3 host=abalaga-255 ansible_ssh_host="149.165.158.236" ansible_ssh_user="ubuntu"
+node4 host=abalaga-256 ansible_ssh_host="149.165.159.250" ansible_ssh_user="ubuntu"
+node5 host=abalaga-257 ansible_ssh_host="149.165.158.231" ansible_ssh_user="ubuntu"
+node6 host=abalaga-258 ansible_ssh_host="149.165.158.164" ansible_ssh_user="ubuntu"
+node7 host=abalaga-259 ansible_ssh_host="149.165.158.234" ansible_ssh_user="ubuntu"
 
 [nimbus]
-node1 host=abalaga-224 ansible_ssh_host="129.114.33.110" ansible_ssh_user="cc"
+node1 host=abalaga-253 ansible_ssh_host="149.165.158.194" ansible_ssh_user="ubuntu"
 
 [supervisors]
-node2 host=abalaga-225 ansible_ssh_host="129.114.33.88" ansible_ssh_user="cc"
-node3 host=abalaga-226 ansible_ssh_host="129.114.33.230" ansible_ssh_user="cc"
-node4 host=abalaga-227 ansible_ssh_host="129.114.32.74" ansible_ssh_user="cc"
-node5 host=abalaga-228 ansible_ssh_host="129.114.32.73" ansible_ssh_user="cc"
+node2 host=abalaga-254 ansible_ssh_host="149.165.158.211" ansible_ssh_user="ubuntu"
+node3 host=abalaga-255 ansible_ssh_host="149.165.158.236" ansible_ssh_user="ubuntu"
+node4 host=abalaga-256 ansible_ssh_host="149.165.159.250" ansible_ssh_user="ubuntu"
+node5 host=abalaga-257 ansible_ssh_host="149.165.158.231" ansible_ssh_user="ubuntu"
+node6 host=abalaga-258 ansible_ssh_host="149.165.158.164" ansible_ssh_user="ubuntu"
+node7 host=abalaga-259 ansible_ssh_host="149.165.158.234" ansible_ssh_user="ubuntu"
