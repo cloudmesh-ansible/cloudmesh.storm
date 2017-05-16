@@ -37,7 +37,7 @@ class StormCommand(PluginCommand):
 				w.write("node{} host=".format(i) + line)
 		f.close()
 		w.close()
-		os.system('rm hosts.txt')
+		os.system('rm -f hosts.txt')
 
 	@command
 	def do_storm(self, args, arguments):
@@ -176,7 +176,7 @@ class StormCommand(PluginCommand):
 
 		elif arguments.cluster and arguments.delete:
 			if default["storm","deploy"]:
-				print("Deleting cluster {}...".format(default["storm","cloud"]))
+				print("Deleting cluster on cloud {}...".format(default["storm","cloud"]))
 
 				# Delete cluster
 				command = 'cm cluster delete'
@@ -193,10 +193,6 @@ class StormCommand(PluginCommand):
 				print("Please deploy a cluster first.")
 
 		elif arguments.submit and arguments.JAR and arguments.CLASS and arguments.JOB:
-			# if zookeeper is set to true
-			# 	run the startStorm.sh script on supervisors
-			# else
-			# 	request zookeeper command to be run
 			if default["storm","deploy"]:
 				print("Submitting jar to cluster {}...".format(default["storm","cloud"]))
 				

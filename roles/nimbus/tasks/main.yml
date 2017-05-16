@@ -3,6 +3,13 @@
   include_vars:
     file: "{{cloud}}.yml"
 
+- name: Install maven
+  become: yes
+  apt:
+    name: maven
+    state: latest
+    install_recommends: no
+
 - name: Download and unarchive storm files
   become: yes
   unarchive:
